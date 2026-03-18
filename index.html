@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prova Paulista 2026 · Guia Oficial</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f4f7fc;
+            color: #212121;
+            line-height: 1.5;
+        }
+
+        :root {
+            --azul-profundo: #0a2f6c;
+            --vermelho-destaque: #d32f2f;
+            --preto-texto: #212121;
+            --cinza-fundo: #f5f7fa;
+            --branco-card: #ffffff;
+            --cinza-borda: #e0e4e9;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+        }
+
+        header {
+            background-color: var(--azul-profundo);
+            color: white;
+            padding: 0.6rem 0;
+            border-bottom: 4px solid var(--vermelho-destaque);
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .header-flex {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .logo img {
+            max-height: 58px;
+            width: auto;
+            display: block;
+            border-radius: 8px;
+            background: white;
+            padding: 4px;
+        }
+
+        .titulo-header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .titulo-header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .tab-bar {
+            background-color: white;
+            border-bottom: 2px solid var(--cinza-borda);
+            padding: 0.5rem 2rem 0 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.1rem;
+            position: sticky;
+            top: 86px;
+            z-index: 15;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            overflow-x: auto;
+        }
+
+        .tab-button {
+            background: none;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #555;
+            cursor: pointer;
+            border-radius: 30px 30px 0 0;
+            transition: all 0.2s;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            white-space: nowrap;
+        }
+
+        .tab-button.active {
+            color: var(--azul-profundo);
+            border-bottom: 3px solid var(--vermelho-destaque);
+            background: #f0f4fa;
+        }
+
+        .tab-button:hover {
+            background: #eef3fb;
+            color: var(--azul-profundo);
+        }
+
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active-pane {
+            display: block;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--vermelho-destaque);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.8rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .badge-azul {
+            background-color: var(--azul-profundo);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--azul-profundo);
+            border-left: 6px solid var(--vermelho-destaque);
+            padding-left: 1rem;
+            margin: 2rem 0 1.2rem 0;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--preto-texto);
+            margin: 1.5rem 0 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .card {
+            background: var(--branco-card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px -8px rgba(0,0,0,0.08);
+            border: 1px solid var(--cinza-borda);
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--azul-profundo);
+        }
+
+        .card-vermelho {
+            border-top: 5px solid var(--vermelho-destaque);
+        }
+
+        .card-azul {
+            border-top: 5px solid var(--azul-profundo);
+        }
+
+        .lista-destaque {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .lista-destaque li {
+            padding: 0.6rem 0 0.6rem 1.8rem;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="%23d32f2f"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>') left center no-repeat;
+            background-size: 18px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.95rem;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        th {
+            background-color: var(--azul-profundo);
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1rem;
+            text-align: left;
+        }
+
+        td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            border-radius: 16px;
+        }
+
+        .link-documento {
+            color: var(--vermelho-destaque);
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .link-documento:hover {
+            border-bottom-color: var(--vermelho-destaque);
+        }
+
+        .callout {
+            background: #fff1f0;
+            border-left: 5px solid var(--vermelho-destaque);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .callout-azul {
+            background: #e7f0fd;
+            border-left-color: var(--azul-profundo);
+        }
+
+        .btn-link {
+            background: var(--vermelho-destaque);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 0.8rem;
+            border: 2px solid transparent;
+        }
+
+        .btn-link:hover {
+            background: white;
+            color: var(--vermelho-destaque);
+            border-color: var(--vermelho-destaque);
+        }
+
+        footer {
+            background-color: var(--preto-texto);
+            color: #ccc;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px dotted var(--vermelho-destaque);
+        }
+
+        .destaque-numero {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--azul-profundo);
+            line-height: 1;
+        }
+
+        @media (max-width: 700px) {
+            .container { padding: 1rem; }
+            .header-flex { flex-direction: column; align-items: start; }
+            h2 { font-size: 1.5rem; }
+            .tab-bar { top: 118px; padding: 0.5rem 1rem 0; }
+            .tab-button { padding: 0.6rem 1rem; }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <div class="container header-flex">
+        <div class="logo">
+            <img src="https://i.ibb.co/0p01LzxB/logo3de.jpg" alt="logo SEDUC">
+        </div>
+        <div class="titulo-header">
+            <h1>Prova Paulista 2026 - URE CAIEIRAS</h1>
+            <p>Documento Orientador · Manuais · Termo de Sigilo</p>
+        </div>
+    </div>
+</header>
+
+<!-- Abas de navegação -->
+<div class="tab-bar">
+    <button class="tab-button active" data-tab="visao-geral">📋 Visão Geral</button>
+    <button class="tab-button" data-tab="cronograma">📅 Cronograma</button>
+    <button class="tab-button" data-tab="estrutura">🧩 Estrutura da Prova</button>
+    <button class="tab-button" data-tab="aplicacao">✍️ Aplicação</button>
+    <button class="tab-button" data-tab="upload">📤 Upload de Cartões</button>
+    <button class="tab-button" data-tab="resultados">📊 Resultados</button>
+    <button class="tab-button" data-tab="seguranca">🔒 Sigilo e Segurança</button>
+    <button class="tab-button" data-tab="especial">♿ Educação Especial</button>
+</div>
+
+<main class="container">
+
+    <!-- ========== VISÃO GERAL ========= -->
+    <div id="tab-visao-geral" class="tab-pane active-pane">
+        <div class="badge badge-azul" style="background: var(--azul-profundo);">Atualizado em 13/03/2026</div>
+        <p style="font-size: 1.2rem; margin: 1.2rem 0 0 0; background: white; padding: 1.5rem; border-radius: 20px; border: 1px solid var(--cinza-borda);">
+            <strong>Prova Paulista</strong> – avaliação formativa bimestral da rede estadual de São Paulo, aplicada do 4º ano EF à 3ª série EM. Produz evidências sobre as aprendizagens, subsidia ações pedagógicas e fortalece a cultura de uso de dados.
+        </p>
+
+        <h2>⸻ Finalidade e Objetivos</h2>
+        <div class="card-grid">
+            <div class="card card-azul">
+                <h3>🎯 Finalidade</h3>
+                <p>Produzir evidências sobre as aprendizagens desenvolvidas no bimestre, identificando avanços, dificuldades e lacunas, para apoiar o planejamento pedagógico e as políticas educacionais.</p>
+            </div>
+            <div class="card card-azul">
+                <h3>📌 Objetivos pedagógicos</h3>
+                <ul class="lista-destaque">
+                    <li>Produzir evidências de aprendizagem</li>
+                    <li>Subsidiar intervenções por escola/turma/estudante</li>
+                    <li>Monitorar a rede</li>
+                    <li>Fortalecer a cultura avaliativa</li>
+                    <li>Compor a nota bimestral (critérios da escola)</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>👥 Público-alvo</h3>
+        <p>Estudantes do <strong>4º ano do Ensino Fundamental à 3ª série do Ensino Médio</strong> da rede estadual.</p>
+
+        <h3>📚 Componentes avaliados</h3>
+        <div class="card-grid">
+            <div class="card">
+                <h4>Ensino Fundamental</h4>
+                <p>BNCC (exceto Arte e Ed. Física) + parte diversificada (Educação Financeira, Tecnologia e Inovação).</p>
+            </div>
+            <div class="card">
+                <h4>Ensino Médio</h4>
+                <p>Formação Geral Básica (exceto Arte e Ed. Física) + todos os Itinerários Formativos.</p>
+            </div>
+        </div>
+
+        <h3>📁 Formatos</h3>
+        <ul class="lista-destaque">
+            <li><strong>Impressa:</strong> componentes da BNCC (EF) e FGB (EM) – Dias 1 e 2.</li>
+            <li><strong>Digital:</strong> Itinerários Formativos (2ª e 3ª EM) e Expansão Noturna – Dia 3.</li>
+        </ul>
+        <p class="link-documento">🔗 <a href="https://repositorio.educacao.sp.gov.br" class="link-documento">Guia do Currículo Priorizado</a> | <a href="https://drive.google.com/drive/folders/1zEe0LCt_-6xewoUc-aydG3hlU20Rb32S?usp=drive_link" class="link-documento">🗂️ Matriz da Prova Paulista-ANOS FINAIS </a>| <a href="https://drive.google.com/drive/folders/1NwsZwzZfaPjCui_3AkTRE83dV_Gnn6rU?usp=drive_link" class="link-documento">🗂️ Matriz da Prova Paulista - ENSINO MÉDIO</a></p>
+    </div>
+
+    <!-- ========== CRONOGRAMA ========= -->
+    <div id="tab-cronograma" class="tab-pane">
+        <div class="badge">Calendário 1º bimestre</div>
+        <h2>⸻ Datas e prazos</h2>
+        <div class="table-responsive">
+            <table>
+                <tr><th>Etapa</th><th>Data</th></tr>
+                <tr><td>Entrega das provas na URE</td><td>Até 10/04</td></tr>
+                <tr><td>Retirada das provas pela escola</td><td>13/04</td></tr>
+                <tr><td>Aplicação (Dias 1, 2 e 3)</td><td>14 a 17/04</td></tr>
+                <tr><td>Limite para upload dos cartões</td><td>23/04</td></tr>
+                <tr><td>Divulgação dos resultados</td><td>30/04</td></tr>
+            </table>
+        </div>
+
+        <h3>🗓️ Dias de aplicação</h3>
+        <div class="table-responsive">
+            <table>
+                <tr><th>Série</th><th>Dia 1 (impresso)</th><th>Dia 2 (impresso)</th><th>Dia 3 (digital)</th></tr>
+                <tr><td>4º e 5º EF</td><td>30 itens</td><td>30 itens</td><td>—</td></tr>
+                <tr><td>6º ao 9º EF</td><td>40 itens</td><td>40 itens</td><td>—</td></tr>
+                <tr><td>1ª EM</td><td>45 itens</td><td>45 itens</td><td>—</td></tr>
+                <tr><td>2ª EM</td><td>35 itens</td><td>35 itens</td><td>10 itens (Itinerário)</td></tr>
+                <tr><td>3ª EM</td><td>35 itens</td><td>25 itens</td><td>30 itens (Itinerário)</td></tr>
+                <tr><td>3ª EM noturno</td><td>35 itens</td><td>25 itens</td><td>45 itens (Itinerário+Expansão)</td></tr>
+            </table>
+        </div>
+        <p class="callout callout-azul" style="margin-top:1rem;"><strong>Dias 3 e 4:</strong> reservados para aplicação extra de estudantes ausentes ou intercorrências.</p>
+    </div>
+    <p class="link-documento">📌 <a href="https://docs.google.com/presentation/d/1UVLXPQrTLs4Jw433CcUK8CK-YwX74WL2dVVGubnI7_E/edit?usp=sharing" class="link-documento">Calendário PROVA PAULISTA - 2026 | ABRIL - JUNHO - SETEMBRO </a> |
+
+    <!-- ========== ESTRUTURA DA PROVA ========= -->
+    <div id="tab-estrutura" class="tab-pane">
+        <h2>⸻ Organização dos cadernos</h2>
+        <p><strong>Três versões</strong> (Roxa, Verde, Laranja) distribuídas alternadamente na mesma turma para garantir segurança.</p>
+        <div class="card-grid">
+            <div class="card card-vermelho">
+                <h3>📝 Itens de múltipla escolha</h3>
+                <p><strong>EF:</strong> 4 alternativas<br><strong>EM:</strong> 5 alternativas</p>
+            </div>
+            <div class="card card-vermelho">
+                <h3>📊 Matriz de referência</h3>
+                <p>Organizada em grupos G1, G2, G3 conforme complexidade cognitiva. Cada item vinculado a um descritor.</p>
+            </div>
+        </div>
+
+        <h3>🔗 Acesse os referenciais</h3>
+        <ul class="lista-destaque">
+            <li><a href="https://seesp-my.sharepoint.com/:x:/g/personal/carolina_batista_educacao_sp_gov_br/IQAPSNKDgKiDRZS0S11MW8h8Acsbo2xi-nTnlqNgA8c3Hvk?e=itee9G" class="link-documento">Quantidade de itens por componente (EF)</a></li>
+            <li><a href="https://seesp-my.sharepoint.com/:x:/g/personal/carolina_batista_educacao_sp_gov_br/IQBlSQdUlAa-SLb084v3s4g4AVGhs_pneEMKJ5RLG0GHDtU?e=OHeWou" class="link-documento">Quantidade de itens por componente (EM)</a></li>
+            <li><a href="https://repositorio.educacao.sp.gov.br" class="link-documento">Matriz da Prova Paulista</a></li>
+        </ul>
+
+        <div class="callout">
+            <p><strong>Critérios de elaboração:</strong> enunciados claros, linguagem adequada, distratores plausíveis, diversidade de contextos e níveis cognitivos.</p>
+        </div>
+    </div>
+
+    <!-- ========== APLICAÇÃO ========= -->
+    <div id="tab-aplicacao" class="tab-pane">
+        <h2>⸻ Procedimentos para aplicação impressa</h2>
+        <div class="card-grid">
+            <div class="card card-azul">
+                <h4>Antes da prova</h4>
+                <ul>
+                    <li>Retirar provas na URE (13/04).</li>
+                    <li>Conferir caixas e lacres.</li>
+                    <li>Armazenar em local seguro.</li>
+                    <li>Organizar salas e aplicadores.</li>
+                </ul>
+            </div>
+            <div class="card card-azul">
+                <h4>Durante a prova</h4>
+                <ul>
+                    <li>Distribuir cadernos alternando cores.</li>
+                    <li>Colar etiqueta nominal na capa.</li>
+                    <li>Ler instruções iniciais.</li>
+                    <li>Garantir silêncio e proibir celular.</li>
+                    <li>Tempo máximo: 2h30; mínimo: 1h.</li>
+                </ul>
+            </div>
+            <div class="card card-azul">
+                <h4>Após a prova</h4>
+                <ul>
+                    <li>Recolher todos os cadernos.</li>
+                    <li>Não destacar a capa.</li>
+                    <li>Realizar upload dos cartões até 23/04.</li>
+                    <li>Armazenar provas até 30/04 (divulgação).</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>👩‍🏫 Responsabilidades</h3>
+        <div class="card-grid">
+            <div class="card">
+                <h4>URE</h4>
+                <ul><li>Entregar provas, monitorar logística, orientar escolas, analisar resultados.</li></ul>
+            </div>
+            <div class="card">
+                <h4>Equipe gestora</h4>
+                <ul><li>Receber, conferir, armazenar, organizar aplicação e assegurar sigilo.</li></ul>
+            </div>
+            <div class="card">
+                <h4>Professor aplicador</h4>
+                <ul><li>Distribuir provas, colar etiquetas, orientar estudantes, recolher materiais.</li></ul>
+            </div>
+            <div class="card">
+                <h4>Estudante</h4>
+                <ul><li>Manter comportamento adequado, usar caneta azul/preta, preencher círculos com nitidez, não usar celular.</li></ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== UPLOAD DE CARTÕES ========= -->
+    <div id="tab-upload" class="tab-pane">
+        <h2>⸻ Subida dos cartões-resposta</h2>
+        <p>Acesso: <strong>Sala do Futuro → Visão Administrativa → Provas e atividades → Prova Impressa → Selecionar turma → Ler Prova</strong></p>
+
+        <div class="card-grid">
+            <div class="card card-vermelho">
+                <h4>📸 Boas práticas para a foto</h4>
+                <ul>
+                    <li>Enquadrar a folha inteira (etiqueta, QR code e respostas).</li>
+                    <li>Superfície plana e clara.</li>
+                    <li>Iluminação artificial uniforme, sem sombras ou reflexos.</li>
+                    <li>Foto reta, sem inclinação.</li>
+                </ul>
+            </div>
+            <div class="card card-vermelho">
+                <h4>⚠️ O que evitar</h4>
+                <ul>
+                    <li>Foto torta ou tremida.</li>
+                    <li>Margens cortadas.</li>
+                    <li>Baixa iluminação.</li>
+                    <li>Sombra sobre o cartão.</li>
+                    <li>Reflexo.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>🔁 Fluxo automático e manual</h3>
+        <ul class="lista-destaque">
+            <li><strong>Automático:</strong> sistema lê as alternativas da foto. Confira e salve.</li>
+            <li><strong>Manual:</strong> para cartões sem etiqueta ou com falha de leitura. Selecione estudante, versão da prova e preencha as alternativas uma a uma.</li>
+        </ul>
+
+        <div class="callout">
+            <p><strong>🚨 Atenção:</strong> Após confirmar, <strong>não será possível editar ou reenviar</strong> o cartão. Confira turma, prova, estudante e todas as alternativas antes de salvar!</p>
+        </div>
+
+        <p class="link-documento">📌 <a href="https://docs.google.com/presentation/d/1TuKk21cghCHY2B2HW752xmfY-u8EZQ9TIY30NPbK8ZQ/edit?usp=drive_link" class="link-documento">Manual detalhado (PDF) - APLICAÇÃO</a> | <a href="https://docs.google.com/presentation/d/1MpFdNPib4oo9CvK3YDKrc9Uik0JHcyN5cXT8cFaPow4/edit?usp=sharing" class="link-documento">Manual detalhado (PDF) - SUBIDA DE CARTÕES</a>| <a href="#" class="link-documento">EM BREVE> Tutorial em vídeo</a></p>
+    </div>
+
+    <!-- ========== RESULTADOS ========= -->
+    <div id="tab-resultados" class="tab-pane">
+        <h2>⸻ BI da Prova Paulista</h2>
+        <p>Os resultados são disponibilizados no <strong>Escola Total</strong> (painéis interativos).</p>
+
+        <div class="card-grid">
+            <div class="card card-azul">
+                <h4>📈 Indicadores</h4>
+                <ul>
+                    <li>Percentual de participação</li>
+                    <li>Percentual de acertos</li>
+                    <li>Farol do SARESP (ritmo para atingir a meta)</li>
+                </ul>
+            </div>
+            <div class="card card-azul">
+                <h4>🔍 Níveis de visualização</h4>
+                <ul>
+                    <li><strong>Regional:</strong> comparativo entre escolas</li>
+                    <li><strong>Escola:</strong> desempenho por turma</li>
+                    <li><strong>Turma:</strong> desempenho individual</li>
+                    <li><strong>Prioridades:</strong> análise por descritor + link para aula/material digital</li>
+                </ul>
+            </div>
+        </div>
+        <p class="link-documento">📊 <a href="#" class="link-documento">Acessar o BI da Prova Paulista</a></p>
+    </div>
+
+    <!-- ========== SEGURANÇA E SIGILO ========= -->
+    <div id="tab-seguranca" class="tab-pane">
+        <h2>⸻ Sigilo e integridade da avaliação</h2>
+        <div class="card-grid">
+            <div class="card card-vermelho">
+                <h4>🔒 Sigilo das provas</h4>
+                <p>Conteúdo estritamente sigiloso até <strong>30/04/2026</strong>. Proibido reproduzir, fotografar ou compartilhar.</p>
+            </div>
+            <div class="card card-vermelho">
+                <h4>📦 Procedimentos de segurança</h4>
+                <ul>
+                    <li>Caixas lacradas até a aplicação.</li>
+                    <li>Armazenamento seguro na escola.</li>
+                    <li>Acesso restrito aos envolvidos.</li>
+                    <li>Recolhimento total dos cadernos.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>📄 Termo de Confidencialidade e Sigilo</h3>
+        <div class="callout">
+            <p><strong>Modelo do termo:</strong> documento obrigatório assinado por todos que manuseiam as provas. Inclui compromisso de não divulgação, não cópia e responsabilização por quebra de sigilo (art. 253 e 257 da Lei Estadual 10.261/68).</p>
+            <a href="https://docs.google.com/document/d/1qod3drupwTct4HOmAQ8ws3V2CeHcgeJe/edit?usp=sharing&ouid=101532812359216929017&rtpof=true&sd=true" class="btn-link" style="margin-top:0.5rem;">Baixar modelo do termo</a>
+        </div>
+
+        <h3>🆘 Ocorrências – Portal de Atendimento</h3>
+        <p>Qualquer problema (cola, caderno danificado, falha técnica) deve ser registrado em <a href="#" class="link-documento">atendimento.educacao.sp.gov.br</a>.</p>
+        <ul class="lista-destaque">
+            <li>Categorias: Prova Física (recebimento, aplicação, leitura), Prova Digital (acesso, aplicação), questão, acessibilidade, BI, etc.</li>
+            <li>Plantão durante aplicação com prazos excepcionais.</li>
+        </ul>
+    </div>
+
+    <!-- ========== EDUCAÇÃO ESPECIAL E CASOS ESPECIAIS ========= -->
+    <div id="tab-especial" class="tab-pane">
+        <h2>⸻ Acessibilidade e aplicação extra</h2>
+        <div class="card-grid">
+            <div class="card card-azul">
+                <h4>♿ Estudantes elegíveis à Educação Especial</h4>
+                <ul>
+                    <li>Tempo adicional de até 1 hora.</li>
+                    <li>Atendimento por profissionais de apoio (Libras, intérprete, guia, etc.).</li>
+                    <li>Sala extra com ambiente adequado.</li>
+                    <li>Professor especializado do Projeto Ensino Colaborativo pode auxiliar na leitura/registro, sem interferir no conteúdo.</li>
+                </ul>
+            </div>
+            <div class="card card-azul">
+                <h4>📅 Aplicação extra</h4>
+                <p>Nos dias 3 e 4 do cronograma, para estudantes ausentes ou em caso de intercorrências (queda de energia, problemas técnicos). Escola organiza a reaplicação.</p>
+            </div>
+        </div>
+        <p class="link-documento">📁 <a href="https://drive.google.com/drive/folders/1TfRUAeRtGBDas0oyCHy5D204ZkYNurX2?usp=drive_link" class="link-documento">Drive de Avaliação – todos os materiais</a> URE-CAIEIRAS</p>
+    </div>
+
+</main>
+
+<footer>
+    <div class="container">
+        <p>Secretaria da Educação do Estado de São Paulo · Diretoria de Avaliação</p>
+        <p style="color: red; font-weight: bold; font-family: sans-serif;">
+            <span>REGIONAL DE ENSINO CAIEIRAS · NÚCLEO PEDAGÓGICO / PECs</span>
+          </p>
+        <p>Documento orientador atualizado em 13/03/2026 · Manuais e termos disponíveis no drive oficial</p>
+        <p>Central de Atendimento: 0800 77 000 12 | <a href="#">atendimento.educacao.sp.gov.br</a></p>
+        <p style="margin-top: 1.5rem; font-size: 0.85rem; color: #aaa;"></p>
+    </div>
+</footer>
+
+<script>
+    const tabs = document.querySelectorAll('.tab-button');
+    const panes = document.querySelectorAll('.tab-pane');
+
+    tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+            tabs.forEach(b => b.classList.remove('active'));
+            panes.forEach(p => p.classList.remove('active-pane'));
+
+            btn.classList.add('active');
+            const tabId = btn.getAttribute('data-tab');
+            document.getElementById(`tab-${tabId}`).classList.add('active-pane');
+            window.scrollTo({ top: 130, behavior: 'smooth' });
+        });
+    });
+</script>
+
+</body>
+</html>
